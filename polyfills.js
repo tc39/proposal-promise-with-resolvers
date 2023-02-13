@@ -11,10 +11,10 @@ export function defer_bound() {
 }
 
 export function defer_subclassable() {
-	let resolve, reject
-	const promise = new this((resolve_, reject_) => {
-		resolve = resolve_
-		reject = reject_
+	const out = {}
+	out.promise = new this((resolve_, reject_) => {
+		out.resolve = resolve_
+		out.reject = reject_
 	})
-	return { resolve, reject, promise }
+	return out
 }
