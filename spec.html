@@ -1,0 +1,55 @@
+<pre class=metadata>
+  title: ES Promise.defer (2023)
+  status: proposal
+  stage: 0
+  location: https://github.com/peetklecha/proposal-promise-defer
+  copyright: false
+  contributors: Peter Klecha
+</pre>
+<script src=ecmarkup.js defer></script>
+<link rel=stylesheet href=ecmarkup.css>
+
+<emu-intro id=introduction>
+  <h1>Introduction</h1>
+  <p>This is the formal specification for a proposed `Promise.defer` method
+  in JavaScript. It modifies the original <a
+  href=https://tc39.github.io/ecma262/>ECMAScript specification</a> with
+  several new or revised clauses. See <a
+  href=https://github.com/peetklecha/proposal-promise-defer/blob/main/README.md>the proposal's
+  explainer</a> for the proposal's background, motivation, and usage examples.</p>
+</emu-intro>
+
+<emu-clause id="sec-control-abstraction-objects">
+  <h1>Control Abstraction Objects</h1>
+
+  <emu-clause id="sec-promise-objects">
+    <h1>Promise Objects</h1>
+
+    <emu-clause id="sec-properties-of-the-promise-constructor">
+      <h1>Properties of the Promise Constructor</h1>
+
+      <emu-clause id="sec-promise.defer">
+        <h1>Promise.defer()</h1>
+        <p>
+          This function returns a object with three properties; a new promise, and the resolve and reject functions associated to that promise.
+        </p>
+        <emu-alg>
+          1. Let _C_ be *this* value.
+          1. Let _promise_ be ? OrdinaryCreateFromConstructor(_C_, _C_.[[Prototype]], « [[PromiseState]], [[PromiseResult]], [[PromiseFulfillReactions]], [[PromiseRejectReactions]], [[PromiseIsHandled]] »)
+          1. Set _promise_.[[PromiseState]] to ~pending~.
+          1. Set _promise_.[[PromiseFulfillReactions]] to a new empty List.
+          1. Set _promise_.[[PromiseRejectReactions]] to a new empty List.
+          1. Set _promise_.[[PromiseIsHandled]] to *false*.
+          1. Let _resolvingFunctions_ be CreateResolvingFunctions(_promise_).
+          1. Let _obj_ be OrdinaryObjectCreate(*null*).
+          1. Perform ! CreateDataPropertyOrThrow(_obj_, "promise", _promise_).
+          1. Perform ! CreateDataPropertyOrThrow(_obj_, "resolve", _resolvingFunctions_.[[Resolve]]).
+          1. Perform ! CreateDataPropertyOrThrow(_obj_, "reject", _resolvingFunctions_.[[Reject]]).
+          1. Return _obj_.
+        </emu-alg>
+      </emu-clause>
+    </emu-clause>
+  </emu-clause>
+
+
+</emu-clause>

@@ -1,0 +1,20 @@
+{
+  "name": "proposal-promise-defer",
+  "version": "1.0.0",
+  "description": "## Synopsis",
+  "main": "polyfills.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peetklecha/proposal-promise-defer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/peetklecha/proposal-promise-defer/issues"
+  },
+  "homepage": "https://github.com/peetklecha/proposal-promise-defer#readme"
+}
