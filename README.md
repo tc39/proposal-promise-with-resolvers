@@ -50,7 +50,7 @@ The resolve and reject functions are attached as methods to the promise rather t
 
 ## Choice points
 
-Besides the possibility of adopting Deno's `deferred` interface, there is the question of how this method should behave in cases of subclassing. There are three options:
+Besides the possibility of adopting Deno's `deferred` interface, there is the question of how this method should behave in cases of subclassing. There are two options:
 
 1. On subclasses of `Promise`, the `defer` method should produce instances of the subclass.
 2. On subclasses of `Promise`, the `defer` method should produce plain Promises.
