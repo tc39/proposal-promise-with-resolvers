@@ -35,16 +35,11 @@
         </p>
         <emu-alg>
           1. Let _C_ be *this* value.
-          1. Let _promise_ be ? OrdinaryCreateFromConstructor(_C_, _C_.[[Prototype]], « [[PromiseState]], [[PromiseResult]], [[PromiseFulfillReactions]], [[PromiseRejectReactions]], [[PromiseIsHandled]] »)
-          1. Set _promise_.[[PromiseState]] to ~pending~.
-          1. Set _promise_.[[PromiseFulfillReactions]] to a new empty List.
-          1. Set _promise_.[[PromiseRejectReactions]] to a new empty List.
-          1. Set _promise_.[[PromiseIsHandled]] to *false*.
-          1. Let _resolvingFunctions_ be CreateResolvingFunctions(_promise_).
+          1. Let _promiseCapability_ be ? NewPromiseCapability(C).
           1. Let _obj_ be OrdinaryObjectCreate(*null*).
-          1. Perform ! CreateDataPropertyOrThrow(_obj_, "promise", _promise_).
-          1. Perform ! CreateDataPropertyOrThrow(_obj_, "resolve", _resolvingFunctions_.[[Resolve]]).
-          1. Perform ! CreateDataPropertyOrThrow(_obj_, "reject", _resolvingFunctions_.[[Reject]]).
+          1. Perform ! CreateDataPropertyOrThrow(_obj_, "promise", _promiseCapability_.[[Promise]]).
+          1. Perform ! CreateDataPropertyOrThrow(_obj_, "resolve", _promiseCapability_.[[Resolve]]).
+          1. Perform ! CreateDataPropertyOrThrow(_obj_, "reject", _promiseCapability_.[[Reject]]).
           1. Return _obj_.
         </emu-alg>
       </emu-clause>

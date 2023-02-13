@@ -54,6 +54,5 @@ Besides the possibility of adopting Deno's `deferred` interface, there is the qu
 
 1. On subclasses of `Promise`, the `defer` method should produce instances of the subclass.
 2. On subclasses of `Promise`, the `defer` method should produce plain Promises.
-3. On subclasses of `Promise`, the `defer` method should error.
 
 These questions would need to be resolved after reaching Stage 1. The current spec describes option 1.
