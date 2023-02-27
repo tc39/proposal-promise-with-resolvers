@@ -34,19 +34,17 @@ const { promise, resolve, reject } = Promise.withResolvers();
 
 ## Existing implementations
 
-The Deno standard library exposes a slight variant of this function; its definition through v0.102.0 is provided below.
+Libraries and applications continually re-invent this wheel. Below are just a handful of examples.
 
-```ts
-export function deferred<T>(): Deferred<T> {
-  let methods;
-  const promise = new Promise<T>((resolve, reject): void => {
-    methods = { resolve, reject };
-  });
-  return Object.assign(promise, methods) as Deferred<T>;
-}
-```
+|Library|Example|
+|------------|----------|
+|React|[inline example](https://github.com/facebook/react/blob/d9e0485c84b45055ba86629dc20870faca9b5973/packages/react-dom/src/__tests__/ReactDOMFizzStaticBrowser-test.js#L95)
+|Vue | [inline example](https://github.com/vuejs/core/blob/9c304bfe7942a20264235865b4bb5f6e53fdee0d/packages/runtime-core/src/compat/componentAsync.ts#L32)
+|Axios|[inline example](https://github.com/axios/axios/blob/bdf493cf8b84eb3e3440e72d5725ba0f138e0451/lib/cancel/CancelToken.js#L20)
+|TypeScript|[utility](https://github.com/microsoft/TypeScript/blob/1d96eb489e559f4f61522edb3c8b5987bbe948af/src/harness/util.ts#L121)
+|Vite|[inline example](https://github.com/vitejs/vite/blob/134ce6817984bad0f5fb043481502531fee9b1db/playground/test-utils.ts#L225)
+|Deno stdlib | [utility](https://deno.land/std@0.178.0/async/deferred.ts?source)
 
-The resolve and reject functions are attached as methods to the promise rather than being return alongside the promise. Since v0.103.0 of the Deno standard library there is also a readonly `state` property on the promise which has the possible values `"fulfilled"`, `"rejected"`, and `"pending"`.
 
 ## Choice points
 
