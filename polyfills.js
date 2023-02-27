@@ -1,10 +1,10 @@
 const Promise = (async () => {})().constructor
 
-export function defer_bound() {
-	return defer_subclassable.call(Promise)
+export function withResolvers_bound() {
+	return withResolvers_subclassable.call(Promise)
 }
 
-export function defer_subclassable() {
+export function withResolvers_subclassable() {
 	const out = {}
 	out.promise = new this((resolve_, reject_) => {
 		out.resolve = resolve_

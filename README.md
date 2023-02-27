@@ -1,4 +1,4 @@
-# proposal-promise-defer
+# proposal-promise-with-resolvers
 
 ## Synopsis
 
@@ -26,10 +26,10 @@ const myPromise = new Promise((resolve_, reject_) => {
 })
 ```
 
-This is boilerplate code that is very frequently re-written by developers. This proposal simply seeks to add a static method, tentatively called `defer`, to the `Promise` constructor which returns a promise along with its resolution and rejection functions conveniently exposed.
+This is boilerplate code that is very frequently re-written by developers. This proposal simply seeks to add a static method, tentatively called `withResolvers`, to the `Promise` constructor which returns a promise along with its resolution and rejection functions conveniently exposed.
 
 ```js
-const { promise, resolve, reject } = Promise.defer();
+const { promise, resolve, reject } = Promise.withResolvers();
 ```
 
 ## Existing implementations
