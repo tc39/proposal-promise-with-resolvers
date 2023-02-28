@@ -1,5 +1,7 @@
 # proposal-promise-with-resolvers
 
+slides: https://docs.google.com/presentation/d/18CqQc6GfZJBWmT7li2nqfvrSFhpNwtQWPfSXhAwo-Bo/edit?usp=sharing
+
 ## Synopsis
 
 When hand-rolling a Promise, the user must pass an executor callback which takes two arguments: a resolve function, which triggers resolution of the promise, and a reject function, which triggers rejection. This works well if the callback can embed a call to an asynchronous function which will eventually trigger the resolution or rejection, e.g., the registration of an event listener.
