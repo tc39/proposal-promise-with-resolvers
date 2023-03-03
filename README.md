@@ -50,9 +50,9 @@ Libraries and applications continually re-invent this wheel. Below are just a ha
 
 ## Choice points
 
-Besides the possibility of adopting Deno's `deferred` interface, there is the question of how this method should behave in cases of subclassing. There are two options:
+There is the question of how this method should behave in cases of subclassing. There are two options:
 
-1. On subclasses of `Promise`, the `defer` method should produce instances of the subclass.
-2. On subclasses of `Promise`, the `defer` method should produce plain Promises.
+1. On subclasses of `Promise`, the `withResolvers` method should produce instances of the subclass.
+2. On subclasses of `Promise`, the `withResolvers` method should produce plain Promises.
 
 These questions would need to be resolved after reaching Stage 1. The current spec describes option 1.
