@@ -34,6 +34,8 @@ This is boilerplate code that is very frequently re-written by developers. This 
 const { promise, resolve, reject } = Promise.withResolvers();
 ```
 
+This method or something like it may be known to some committee members under the name `defer` or `deferred`, names also sometimes applied to utility functions in the ecosystem. This proposal adopts a more descriptive name for now, but awaits bikeshedding.
+
 ## Existing implementations
 
 Libraries and applications continually re-invent this wheel. Below are just a handful of examples.
