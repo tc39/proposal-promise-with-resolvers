@@ -1,6 +1,19 @@
-# proposal-promise-with-resolvers
+# `Promise.withResolvers`
 
-slides: https://docs.google.com/presentation/d/18CqQc6GfZJBWmT7li2nqfvrSFhpNwtQWPfSXhAwo-Bo/edit?usp=sharing
+## Status
+
+Stage: 1
+
+Champions:
+
+- Peter Klecha ([@peetklecha](https://github.com/peetklecha))
+- Chris de Almeida ([@ctcpip](https://github.com/ctcpip))
+
+Authors:
+
+- Peter Klecha ([@peetklecha](https://github.com/peetklecha))
+
+[Stage 1 slides](https://docs.google.com/presentation/d/18CqQc6GfZJBWmT7li2nqfvrSFhpNwtQWPfSXhAwo-Bo)
 
 ## Synopsis
 
@@ -48,7 +61,6 @@ Libraries and applications continually re-invent this wheel. Below are just a ha
 |TypeScript|[utility](https://github.com/microsoft/TypeScript/blob/1d96eb489e559f4f61522edb3c8b5987bbe948af/src/harness/util.ts#L121)
 |Vite|[inline example](https://github.com/vitejs/vite/blob/134ce6817984bad0f5fb043481502531fee9b1db/playground/test-utils.ts#L225)
 |Deno stdlib | [utility](https://deno.land/std@0.178.0/async/deferred.ts?source)
-
 
 ## Choice points
 

@@ -8,13 +8,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/peetklecha/proposal-promise-with-resolvers.git"
+    "url": "git+https://github.com/tc39/proposal-promise-with-resolvers.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/peetklecha/proposal-promise-with-resolvers/issues"
+    "url": "https://github.com/tc39/proposal-promise-with-resolvers/issues"
   },
-  "homepage": "https://github.com/peetklecha/proposal-promise-with-resolvers#readme"
+  "homepage": "https://github.com/tc39/proposal-promise-with-resolvers#readme"
 }
