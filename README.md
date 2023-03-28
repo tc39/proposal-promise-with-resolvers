@@ -41,6 +41,39 @@ const myPromise = new Promise((resolve_, reject_) => {
 })
 ```
 
+Developers may also have requirements that necessitate passing resolve/reject to more than one caller, so they MUST implement it this way:
+
+```js
+let resolve = () => { };
+let reject = () => { };
+
+function request(type, message) {
+  if (socket) {
+    const promise = new Promise((res, rej) => {
+      resolve = res;
+      reject = rej;
+    });
+    socket.emit(type, message);
+    return promise;
+  }
+
+  return Promise.reject(new Error('Socket unavailable'));
+}
+
+socket.on('response', response => {
+  if (response.status === 200) {
+    resolve(response);
+  }
+  else {
+    reject(new Error(response));
+  }
+});
+
+socket.on('error', err => {
+  reject(err);
+});
+```
+
 This is boilerplate code that is very frequently re-written by developers. This proposal simply seeks to add a static method, tentatively called `withResolvers`, to the `Promise` constructor which returns a promise along with its resolution and rejection functions conveniently exposed.
 
 ```js
