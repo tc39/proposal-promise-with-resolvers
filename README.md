@@ -20,25 +20,33 @@ Authors:
 When hand-rolling a Promise, the user must pass an executor callback which takes two arguments: a resolve function, which triggers resolution of the promise, and a reject function, which triggers rejection. This works well if the callback can embed a call to an asynchronous function which will eventually trigger the resolution or rejection, e.g., the registration of an event listener.
 
 ```js
-const myPromise = new Promise((resolve, reject) => {
+const promise = new Promise((resolve, reject) => {
   asyncRequest(config, response => {
     const buffer = [];
-    response.on("data", data => buffer.push(data));
-    response.on("end", () => resolve(buffer));
-    response.on("error", reason => reject(reason));
-  })
-})
+    response.on('data', data => buffer.push(data));
+    response.on('end', () => resolve(buffer));
+    response.on('error', reason => reject(reason));
+  });
+});
 ```
 
 Often however developers would like to configure the promise's resolution and rejection behavior after instantiating it. Today this requires a cumbersome workaround to extract the resolve and reject functions from the callback scope:
 
 ```js
-let resolve;
-let reject;
-const myPromise = new Promise((resolve_, reject_) => {
-  resolve = resolve_;
-  reject = reject_;
-})
+let resolve, reject;
+const promise = new Promise((res, rej) => {
+  resolve = res;
+  reject = rej;
+});
+asyncRequest(config, response => {
+  const buffer = [];
+  response.on('callback-request', id => {
+    promise.then(data => callback(id, data));
+  });
+  response.on('data', data => buffer.push(data));
+  response.on('end', () => resolve(buffer));
+  response.on('error', reason => reject(reason));
+});
 ```
 
 Developers may also have requirements that necessitate passing resolve/reject to more than one caller, so they MUST implement it this way:
@@ -102,4 +110,4 @@ There is the question of how this method should behave in cases of subclassing. 
 1. On subclasses of `Promise`, the `withResolvers` method should produce instances of the subclass.
 2. On subclasses of `Promise`, the `withResolvers` method should produce plain Promises.
 
-These questions would need to be resolved after reaching Stage 1. The current spec describes option 1.
+The current spec describes option 1.
