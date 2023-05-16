@@ -1,31 +1,85 @@
-# proposal-promise-with-resolvers
+# `Promise.withResolvers`
 
-slides: https://docs.google.com/presentation/d/18CqQc6GfZJBWmT7li2nqfvrSFhpNwtQWPfSXhAwo-Bo/edit?usp=sharing
+## Status
+
+Stage: 1
+
+Champions:
+
+- Peter Klecha ([@peetklecha](https://github.com/peetklecha))
+- Chris de Almeida ([@ctcpip](https://github.com/ctcpip))
+
+Authors:
+
+- Peter Klecha ([@peetklecha](https://github.com/peetklecha))
+
+[Stage 1 slides](https://docs.google.com/presentation/d/18CqQc6GfZJBWmT7li2nqfvrSFhpNwtQWPfSXhAwo-Bo)
 
 ## Synopsis
 
 When hand-rolling a Promise, the user must pass an executor callback which takes two arguments: a resolve function, which triggers resolution of the promise, and a reject function, which triggers rejection. This works well if the callback can embed a call to an asynchronous function which will eventually trigger the resolution or rejection, e.g., the registration of an event listener.
 
 ```js
-const myPromise = new Promise((resolve, reject) => {
+const promise = new Promise((resolve, reject) => {
   asyncRequest(config, response => {
     const buffer = [];
-    response.on("data", data => buffer.push(data));
-    response.on("end", () => resolve(buffer));
-    response.on("error", reason => reject(reason));
-  })
-})
+    response.on('data', data => buffer.push(data));
+    response.on('end', () => resolve(buffer));
+    response.on('error', reason => reject(reason));
+  });
+});
 ```
 
 Often however developers would like to configure the promise's resolution and rejection behavior after instantiating it. Today this requires a cumbersome workaround to extract the resolve and reject functions from the callback scope:
 
 ```js
-let resolve;
-let reject;
-const myPromise = new Promise((resolve_, reject_) => {
-  resolve = resolve_;
-  reject = reject_;
-})
+let resolve, reject;
+const promise = new Promise((res, rej) => {
+  resolve = res;
+  reject = rej;
+});
+asyncRequest(config, response => {
+  const buffer = [];
+  response.on('callback-request', id => {
+    promise.then(data => callback(id, data));
+  });
+  response.on('data', data => buffer.push(data));
+  response.on('end', () => resolve(buffer));
+  response.on('error', reason => reject(reason));
+});
+```
+
+Developers may also have requirements that necessitate passing resolve/reject to more than one caller, so they MUST implement it this way:
+
+```js
+let resolve = () => { };
+let reject = () => { };
+
+function request(type, message) {
+  if (socket) {
+    const promise = new Promise((res, rej) => {
+      resolve = res;
+      reject = rej;
+    });
+    socket.emit(type, message);
+    return promise;
+  }
+
+  return Promise.reject(new Error('Socket unavailable'));
+}
+
+socket.on('response', response => {
+  if (response.status === 200) {
+    resolve(response);
+  }
+  else {
+    reject(new Error(response));
+  }
+});
+
+socket.on('error', err => {
+  reject(err);
+});
 ```
 
 This is boilerplate code that is very frequently re-written by developers. This proposal simply seeks to add a static method, tentatively called `withResolvers`, to the `Promise` constructor which returns a promise along with its resolution and rejection functions conveniently exposed.
@@ -49,7 +103,6 @@ Libraries and applications continually re-invent this wheel. Below are just a ha
 |Vite|[inline example](https://github.com/vitejs/vite/blob/134ce6817984bad0f5fb043481502531fee9b1db/playground/test-utils.ts#L225)
 |Deno stdlib | [utility](https://deno.land/std@0.178.0/async/deferred.ts?source)
 
-
 ## Choice points
 
 There is the question of how this method should behave in cases of subclassing. There are two options:
@@ -57,4 +110,4 @@ There is the question of how this method should behave in cases of subclassing. 
 1. On subclasses of `Promise`, the `withResolvers` method should produce instances of the subclass.
 2. On subclasses of `Promise`, the `withResolvers` method should produce plain Promises.
 
-These questions would need to be resolved after reaching Stage 1. The current spec describes option 1.
+The current spec describes option 1.
