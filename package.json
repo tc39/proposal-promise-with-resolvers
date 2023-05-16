@@ -4,7 +4,8 @@
   "description": "",
   "main": "polyfills.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "ecmarkup --lint-spec --strict --load-biblio @tc39/ecma262-biblio spec.html docs/index.html"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/peetklecha/proposal-promise-with-resolvers/issues"
   },
-  "homepage": "https://github.com/peetklecha/proposal-promise-with-resolvers#readme"
+  "homepage": "https://github.com/peetklecha/proposal-promise-with-resolvers#readme",
+  "dependencies": {
+    "@tc39/ecma262-biblio": "^2.1.2558",
+    "ecmarkup": "^17.0.0"
+  }
 }
