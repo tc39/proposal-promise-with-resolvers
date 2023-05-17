@@ -18,6 +18,6 @@ jobs:
     - run: npm run build
     - uses: JamesIves/github-pages-deploy-action@v4.3.3
       with:
-        branch: gh-pages
+        branch: main
         folder: docs
         clean: true
