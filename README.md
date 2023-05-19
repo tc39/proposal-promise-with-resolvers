@@ -2,7 +2,7 @@
 
 ## Status
 
-Stage: 1
+Stage: 2
 
 Champions:
 
@@ -13,6 +13,7 @@ Authors:
 
 - Peter Klecha ([@peetklecha](https://github.com/peetklecha))
 
+[Stage 2 slides](https://docs.google.com/presentation/d/1CEh2xgW-KB0Tpz2GQtcJ8nDbWq99d3y8NCwYJw-laSI)
 [Stage 1 slides](https://docs.google.com/presentation/d/18CqQc6GfZJBWmT7li2nqfvrSFhpNwtQWPfSXhAwo-Bo)
 
 ## Synopsis
