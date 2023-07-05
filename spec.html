@@ -31,10 +31,10 @@
       <emu-clause id="sec-promise.withResolvers">
         <h1>Promise.withResolvers ( )</h1>
         <p>
-          This function returns a object with three properties; a new promise, and the resolve and reject functions associated to that promise.
+          This function returns an object with three properties: a new promise plus the `resolve` and `reject` functions associated with that promise.
         </p>
         <emu-alg>
-          1. Let _C_ be *this* value.
+          1. Let _C_ be the *this* value.
           1. Let _promiseCapability_ be ? NewPromiseCapability(_C_).
           1. Let _obj_ be OrdinaryObjectCreate(%Object.prototype%).
           1. Perform ! CreateDataPropertyOrThrow(_obj_, "promise", _promiseCapability_.[[Promise]]).
