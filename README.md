@@ -7,7 +7,6 @@ Stage: 2
 Champions:
 
 - Peter Klecha ([@peetklecha](https://github.com/peetklecha))
-- Chris de Almeida ([@ctcpip](https://github.com/ctcpip))
 
 Authors:
 
