@@ -2,7 +2,7 @@
 
 ## Status
 
-Stage: 2
+Stage: 3
 
 Champions:
 
@@ -12,6 +12,7 @@ Authors:
 
 - Peter Klecha ([@peetklecha](https://github.com/peetklecha))
 
+[Stage 3 slides](https://docs.google.com/presentation/d/1KFShqHVFhVBaqZ3anheUGOwtVDrPWCVeFvmaUpwk3AQ)
 [Stage 2 slides](https://docs.google.com/presentation/d/1CEh2xgW-KB0Tpz2GQtcJ8nDbWq99d3y8NCwYJw-laSI)
 [Stage 1 slides](https://docs.google.com/presentation/d/18CqQc6GfZJBWmT7li2nqfvrSFhpNwtQWPfSXhAwo-Bo)
 
@@ -88,7 +89,7 @@ This is boilerplate code that is very frequently re-written by developers. This 
 const { promise, resolve, reject } = Promise.withResolvers();
 ```
 
-This method or something like it may be known to some committee members under the name `defer` or `deferred`, names also sometimes applied to utility functions in the ecosystem. This proposal adopts a more descriptive name for now, but awaits bikeshedding.
+This method or something like it may be known to some committee members under the name `defer` or `deferred`, names also sometimes applied to utility functions in the ecosystem. This proposal adopts a more descriptive name for the benefit of users who may not be familiar with those historical functions.
 
 ## Existing implementations
 
@@ -103,11 +104,3 @@ Libraries and applications continually re-invent this wheel. Below are just a ha
 |Vite|[inline example](https://github.com/vitejs/vite/blob/134ce6817984bad0f5fb043481502531fee9b1db/playground/test-utils.ts#L225)
 |Deno stdlib | [utility](https://deno.land/std@0.178.0/async/deferred.ts?source)
 
-## Choice points
-
-There is the question of how this method should behave in cases of subclassing. There are two options:
-
-1. On subclasses of `Promise`, the `withResolvers` method should produce instances of the subclass.
-2. On subclasses of `Promise`, the `withResolvers` method should produce plain Promises.
-
-The current spec describes option 1.
