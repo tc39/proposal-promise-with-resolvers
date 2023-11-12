@@ -89,6 +89,13 @@ This is boilerplate code that is very frequently re-written by developers. This 
 const { promise, resolve, reject } = Promise.withResolvers();
 ```
 
+To reduce boiler plate when renaming these functions, array destructuring is allowed as the result of calling `withResolvers` would be iterable.
+
+```js
+const [readFile, resolveReadFile, rejectReadFile] = Promise.withResolvers();
+```
+
+
 This method or something like it may be known to some committee members under the name `defer` or `deferred`, names also sometimes applied to utility functions in the ecosystem. This proposal adopts a more descriptive name for the benefit of users who may not be familiar with those historical functions.
 
 ## Existing implementations
