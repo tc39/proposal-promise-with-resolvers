@@ -37,7 +37,7 @@
           1. Let _C_ be the *this* value.
           1. Let _promiseCapability_ be ? NewPromiseCapability(_C_).
           1. Let _obj_ be OrdinaryObjectCreate(%Object.prototype%).
-          1. Perform ! CreateDataPropertyOrThrow(_obj_, "[Symbol.iterator]", _promiseCapability_.[[Iterator]]).
+          1. Perform ! CreateDataPropertyOrThrow(_obj_, %Symbol.iterator%, _promiseCapability_.[[Iterator]]).
           1. Perform ! CreateDataPropertyOrThrow(_obj_, "promise", _promiseCapability_.[[Promise]]).
           1. Perform ! CreateDataPropertyOrThrow(_obj_, "resolve", _promiseCapability_.[[Resolve]]).
           1. Perform ! CreateDataPropertyOrThrow(_obj_, "reject", _promiseCapability_.[[Reject]]).
