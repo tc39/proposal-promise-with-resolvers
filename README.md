@@ -1,8 +1,10 @@
 # `Promise.withResolvers`
 
+Note: this proposal is now [at stage 4](https://github.com/tc39/proposals/commit/8fef293ac43c2ae15b4209ce1fec6347c9a0a583). See the spec PR here: https://github.com/tc39/ecma262/pull/3179
+
 ## Status
 
-Stage: 3
+Stage: 4
 
 Champions:
 
